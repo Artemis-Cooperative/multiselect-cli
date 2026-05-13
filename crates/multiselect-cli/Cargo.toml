@@ -1,0 +1,15 @@
+[package]
+name = "multiselect-cli"
+version = "1.0.0"
+edition = "2021"
+
+[[bin]]
+name = "multiselect"
+path = "src/bin/multiselect.rs"
+
+[dependencies]
+crossterm = { version = "0.29", features = ["use-dev-tty"] }
+
+[dev-dependencies]
+expectrl = "0.7"
+tempfile = "3"
