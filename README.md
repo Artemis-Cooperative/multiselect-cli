@@ -38,7 +38,7 @@ Example:
 printf 'a\tAlpha\t\t\nb\tBeta\t\t1\nc\tGamma\t\t\n' | multiselect --prompt "Pick one:"
 ```
 
-Key bindings: `↑`/`↓` (or `j`/`k`) navigate, `space` toggle, `enter` confirm, `esc`/`q`/`Ctrl-C` cancel.
+Key bindings: `↑`/`↓` (or `j`/`k`) navigate, `enter` to select, `s` to submit, `esc`/`q`/`Ctrl-C` to exit.
 
 ## Library Usage
 

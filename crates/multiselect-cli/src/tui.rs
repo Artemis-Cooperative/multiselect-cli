@@ -67,12 +67,12 @@ pub(crate) fn run(prompt: &str, mut tree: Tree) -> Result<Option<Vec<String>>, S
                     cursor_idx += 1;
                 }
             }
-            (KeyCode::Char(' '), _) => {
+            (KeyCode::Enter, _) => {
                 if let Some(row) = order.get(cursor_idx) {
                     tree.toggle(row.item_idx);
                 }
             }
-            (KeyCode::Enter, _) => return Ok(Some(tree.selected_leaves())),
+            (KeyCode::Char('s'), KeyModifiers::NONE) => return Ok(Some(tree.selected_leaves())),
             (KeyCode::Esc, _) | (KeyCode::Char('q'), KeyModifiers::NONE) => return Ok(None),
             (KeyCode::Char('c'), KeyModifiers::CONTROL) => return Ok(None),
             _ => {}
@@ -115,11 +115,11 @@ fn draw(
     }
 
     row += 1;
-    queue!(
-        out,
-        cursor::MoveTo(0, row),
-        Print("space toggle \u{00B7} enter confirm \u{00B7} esc cancel"),
-    )?;
+    queue!(out, cursor::MoveTo(0, row), Print("\u{21B5} to select"))?;
+    row += 1;
+    queue!(out, cursor::MoveTo(0, row), Print("s to submit"))?;
+    row += 1;
+    queue!(out, cursor::MoveTo(0, row), Print("esc to exit"))?;
     out.flush()?;
     Ok(())
 }

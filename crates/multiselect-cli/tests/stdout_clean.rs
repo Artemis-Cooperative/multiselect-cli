@@ -1,4 +1,4 @@
-use expectrl::{spawn, ControlCode, Eof};
+use expectrl::{spawn, Eof};
 use std::os::unix::fs::PermissionsExt;
 use std::time::Duration;
 
@@ -29,7 +29,7 @@ fn tui_does_not_pollute_stdout() {
     session.set_expect_timeout(Some(Duration::from_secs(5)));
 
     session.expect("Alpha").unwrap();
-    session.send(ControlCode::CarriageReturn).unwrap();
+    session.send("s").unwrap();
     session.expect(Eof).unwrap();
 
     let captured = std::fs::read(&stdout_log).unwrap();
